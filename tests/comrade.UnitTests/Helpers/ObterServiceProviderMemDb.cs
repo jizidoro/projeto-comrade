@@ -19,8 +19,6 @@ namespace comrade.UnitTests.Helpers
 {
     public class ObterServiceProviderMemDb
     {
-        private readonly ContextFactory _contextFactory = new();
-
         public ServiceProvider Execute()
         {
             var services = new ServiceCollection();
