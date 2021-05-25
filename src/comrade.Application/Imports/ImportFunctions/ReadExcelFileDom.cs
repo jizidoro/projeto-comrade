@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Http;
 
 #endregion
 
@@ -11,9 +12,10 @@ namespace comrade.Application.Imports.ImportFunctions
 {
     public static class ReadExcelFileDom
     {
-        public static void Execute(string fileName)
+        public static void Execute(IFormFile arqivoImportacao)
         {
-            using var spreadsheetDocument = SpreadsheetDocument.Open(fileName, false);
+            using var streamArquivo = arqivoImportacao.OpenReadStream();
+            using var spreadsheetDocument = SpreadsheetDocument.Open(streamArquivo, false);
             var workbookPart = spreadsheetDocument.WorkbookPart;
             if (workbookPart != null)
             {
@@ -25,14 +27,13 @@ namespace comrade.Application.Imports.ImportFunctions
                 {
                     foreach (var c in r.Elements<Cell>())
                     {
-                        text = c.CellValue.Text;
-                        Console.Write(text + " ");
+                        if (c.CellValue != null)
+                        {
+                            text = c.CellValue.Text;
+                        }
                     }
                 }
             }
-
-            Console.WriteLine();
-            Console.ReadKey();
         }
     }
 }

@@ -25,50 +25,59 @@ namespace comrade.Application.Imports.ImportFunctions
 
                 var informacaoLinhas = new List<Dictionary<string, string>>();
 
-                foreach (var worksheetPart in workbookPart.WorksheetParts)
-                {
-                    var informacaoLinha = new Dictionary<string, string>();
-                    var reader = OpenXmlReader.Create(worksheetPart);
-                    while (reader.Read())
+                if (workbookPart != null)
+                    foreach (var worksheetPart in workbookPart.WorksheetParts)
                     {
-                        if (reader.ElementType == typeof(Row))
+                        var informacaoLinha = new Dictionary<string, string>();
+                        var reader = OpenXmlReader.Create(worksheetPart);
+                        while (reader.Read())
                         {
-                            reader.ReadFirstChild();
-
-                            do
+                            if (reader.ElementType == typeof(Row))
                             {
-                                if (reader.ElementType == typeof(Cell))
+                                reader.ReadFirstChild();
+
+                                do
                                 {
-                                    var celula = (Cell) reader.LoadCurrentElement();
-
-                                    string cellValue;
-
-                                    if (celula.DataType != null && celula.DataType == CellValues.SharedString)
+                                    if (reader.ElementType == typeof(Cell))
                                     {
-                                        var ssi = workbookPart.SharedStringTablePart.SharedStringTable
-                                            .Elements<SharedStringItem>()
-                                            .ElementAt(int.Parse(celula.CellValue.InnerText));
+                                        var celula = (Cell) reader.LoadCurrentElement();
 
-                                        cellValue = ssi.Text?.Text;
-                                    }
-                                    else
-                                    {
-                                        cellValue = celula.CellValue?.InnerText;
-                                    }
+                                        string cellValue;
 
-                                    var coluna = Regex.Replace(celula.CellReference, @"[\d-]", string.Empty);
-                                    informacaoLinha.Add(coluna, cellValue);
+                                        if (celula != null && celula.DataType != null && celula.DataType == CellValues.SharedString)
+                                        {
+                                            var ssi = workbookPart.SharedStringTablePart.SharedStringTable
+                                                .Elements<SharedStringItem>()
+                                                .ElementAt(int.Parse(celula.CellValue.InnerText));
+
+                                            cellValue = ssi.Text?.Text;
+                                        }
+                                        else
+                                        {
+                                            cellValue = celula.CellValue?.InnerText;
+                                        }
+
+                                        var coluna = Regex.Replace(celula.CellReference, @"[\d-]", string.Empty);
+                                        if (cellValue != null)
+                                        {
+                                            informacaoLinha.Add(coluna, cellValue);
+                                        }
+                                    }
+                                } while (reader.ReadNextSibling());
+                            }
+
+                            if (informacaoLinha.Count > 0)
+                            {
+                                var linhaConteudo = informacaoLinha.Select(x => x.Value != null).Any();
+
+                                if (linhaConteudo)
+                                {
+                                    informacaoLinhas.Add(informacaoLinha);
+                                    informacaoLinha = new Dictionary<string, string>();
                                 }
-                            } while (reader.ReadNextSibling());
-                        }
-
-                        if (informacaoLinha.Count > 0)
-                        {
-                            informacaoLinhas.Add(informacaoLinha);
-                            informacaoLinha = new Dictionary<string, string>();
+                            }
                         }
                     }
-                }
 
                 streamArquivo.Close();
                 return informacaoLinhas;
