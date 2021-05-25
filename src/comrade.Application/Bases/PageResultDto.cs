@@ -28,10 +28,10 @@ namespace comrade.Application.Bases
         public PageResultDto(PaginationFilter pagination, IList<T> data)
         {
             Data = data;
-            PageNumber = pagination.PageNumber >= 1 ? pagination.PageNumber : (int?) null;
-            PageSize = pagination.PageNumber >= 1 ? pagination.PageSize : (int?) null;
+            PageNumber = pagination.PageNumber >= 1 ? pagination.PageNumber : null;
+            PageSize = pagination.PageNumber >= 1 ? pagination.PageSize : null;
             NextPage = pagination.PageNumber + 1;
-            PreviusPage = pagination.PageNumber > 1 ? pagination.PageNumber - 1 : (int?) null;
+            PreviusPage = pagination.PageNumber > 1 ? pagination.PageNumber - 1 : null;
             Codigo = data == null ? (int) EnumResultadoAcao.ErroNaoEncontrado : (int) EnumResultadoAcao.Sucesso;
             Sucesso = data != null;
             Mensagem = data == null ? MensagensNegocio.ResourceManager.GetString("MSG04") : string.Empty;

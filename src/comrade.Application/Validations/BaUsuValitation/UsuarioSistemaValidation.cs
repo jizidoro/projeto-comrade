@@ -1,9 +1,9 @@
 ﻿#region
 
-using FluentValidation;
 using comrade.Application.Bases;
 using comrade.Application.Dtos.UsuarioSistemaDtos;
 using comrade.Application.Messages;
+using FluentValidation;
 
 #endregion
 
