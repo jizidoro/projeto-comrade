@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nome": "111",
+    "email": "777@teste",
+    "senha": "100.SdwfwU4tDWbBkLlBNd7Vcg==.cGEYFjBRNpLrCxzYNIbSdnbbY1zFvBHcyIslMTSmwy8=",
+    "situacao": true,
+    "matricula": "123",
+    "dataRegistro": "2019-05-13T08:25:00"
+  },
+  {
+    "id": 2,
+    "nome": "222",
+    "email": "888@teste",
+    "senha": "100.fsSHTMiMs/JsNth6Hlg/Pg==.+IYtLdw9oTLyYitCcKJzlyWkmxzvSNyw27BYxJtXHq0=",
+    "situacao": true,
+    "matricula": "234",
+    "dataRegistro": "2019-06-13T08:25:00"
+  },
+  {
+    "id": 3,
+    "nome": "333",
+    "email": "999@teste",
+    "senha": "100.63tHFQEtSCWgvtMYxLVfRw==.i42OQQG11aP4tdgto5SD5tCaxka47oBhpvfkBhetm0Q=",
+    "situacao": true,
+    "matricula": "345",
+    "dataRegistro": "2019-07-13T08:25:00"
+  },
+  {
+    "id": 4,
+    "nome": "444",
+    "email": "444@teste",
+    "senha": "100.9RIgQMvr7sxKRxquUEzveA==.5rsqWQZQ4Z2YOBmfPApsB36n8qAA3hwStSEqbDzndTg=",
+    "situacao": true,
+    "matricula": "568",
+    "dataRegistro": "2019-09-13T08:25:00"
+  }
+]
