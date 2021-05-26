@@ -71,8 +71,6 @@ namespace comrade.WebApi.UseCases.V1.AirplaneApi
             try
             {
                 var result = await _airplaneAppService.Obter(id);
-                Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-                _logger.LogInformation("That's all!");
                 return Ok(result);
             }
             catch (Exception e)
