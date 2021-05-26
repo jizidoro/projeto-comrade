@@ -10,3 +10,4 @@ git/
 *.pdb
 *.cache
 *.props
+log*.txt

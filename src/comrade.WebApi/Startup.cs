@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Prometheus;
+using Serilog;
 
 #endregion
 
@@ -59,6 +60,7 @@ namespace comrade.WebApi
                 .AddCustomDataProtection();
 
             services.AddAutoMapperSetup();
+            services.AddLogging();
 
             services.AddScoped(typeof(ILookupServiceApp<>), typeof(LookupServiceApp<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -95,6 +97,7 @@ namespace comrade.WebApi
                 .UseVersionedSwagger(provider, Configuration, env)
                 .UseAuthentication()
                 .UseAuthorization()
+                .UseSerilogRequestLogging()
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();

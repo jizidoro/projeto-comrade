@@ -1,6 +1,7 @@
 #region
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AutoMapper;
 using comrade.Application.Bases;
@@ -8,30 +9,34 @@ using comrade.Application.Dtos.AirplaneDtos;
 using comrade.Application.Filters;
 using comrade.Application.Interfaces;
 using comrade.Application.Queries;
+using comrade.WebApi.Bases;
 using comrade.WebApi.Modules.Common.FeatureFlags;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.FeatureManagement.Mvc;
 
 #endregion
 
 namespace comrade.WebApi.UseCases.V1.AirplaneApi
 {
-    [Authorize]
+    // [Authorize]
     [FeatureGate(CustomFeature.Airplane)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class AirplaneController : ControllerBase
+    public class AirplaneController : ComradeController
     {
         private readonly IAirplaneAppService _airplaneAppService;
+        private readonly ILogger<AirplaneController> _logger;
         private readonly IMapper _mapper;
 
         public AirplaneController(
-            IAirplaneAppService airplaneAppService, IMapper mapper)
+            IAirplaneAppService airplaneAppService, IMapper mapper, ILogger<AirplaneController> logger)
         {
             _airplaneAppService = airplaneAppService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -66,6 +71,8 @@ namespace comrade.WebApi.UseCases.V1.AirplaneApi
             try
             {
                 var result = await _airplaneAppService.Obter(id);
+                Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+                _logger.LogInformation("That's all!");
                 return Ok(result);
             }
             catch (Exception e)
