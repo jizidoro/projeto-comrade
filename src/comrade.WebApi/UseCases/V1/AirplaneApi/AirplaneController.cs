@@ -20,7 +20,7 @@ using Microsoft.FeatureManagement.Mvc;
 
 namespace comrade.WebApi.UseCases.V1.AirplaneApi
 {
-    // [Authorize]
+    [Authorize]
     [FeatureGate(CustomFeature.Airplane)]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
