@@ -1,7 +1,6 @@
 #region
 
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using AutoMapper;
 using comrade.Application.Bases;

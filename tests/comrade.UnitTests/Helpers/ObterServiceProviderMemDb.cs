@@ -4,7 +4,6 @@ using comrade.Application.Interfaces;
 using comrade.Application.Services;
 using comrade.Core.Helpers.Interfaces;
 using comrade.Infrastructure.Bases;
-using comrade.Infrastructure.DataAccess;
 using comrade.WebApi.Modules;
 using comrade.WebApi.Modules.Common;
 using comrade.WebApi.Modules.Common.FeatureFlags;

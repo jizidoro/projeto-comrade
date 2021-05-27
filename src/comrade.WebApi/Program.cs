@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Bson;
 using Serilog;
-using Serilog.Events;
 using Serilog.Extensions.Logging;
 
 #endregion
@@ -18,7 +17,7 @@ namespace comrade.WebApi
     /// </summary>
     public static class Program
     {
-        static readonly LoggerProviderCollection Providers = new LoggerProviderCollection();
+        private static readonly LoggerProviderCollection Providers = new();
 
         /// <summary>
         /// </summary>
@@ -32,10 +31,10 @@ namespace comrade.WebApi
                 .Enrich.With(new ApplicationDetailsEnricher())
                 .Enrich.FromLogContext()
                 .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                .WriteTo.MongoDB("mongodb://localhost/local", collectionName: "log")
+                .WriteTo.MongoDB("mongodb://localhost/local", "log")
                 .WriteTo.Providers(Providers)
                 .CreateLogger();
-            
+
             try
             {
                 Log.Information("Starting up");
