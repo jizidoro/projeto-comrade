@@ -44,7 +44,8 @@ namespace comrade.Application.Imports.ImportFunctions
 
                                         string cellValue;
 
-                                        if (celula != null && celula.DataType != null && celula.DataType == CellValues.SharedString)
+                                        if (celula != null && celula.DataType != null &&
+                                            celula.DataType == CellValues.SharedString)
                                         {
                                             var ssi = workbookPart.SharedStringTablePart.SharedStringTable
                                                 .Elements<SharedStringItem>()

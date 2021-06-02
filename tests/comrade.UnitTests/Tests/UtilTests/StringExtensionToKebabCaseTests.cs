@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿#region
+
 using comrade.Application.Extensions;
 using Xunit;
+
+#endregion
 
 namespace comrade.UnitTests.Tests.UtilTests
 {
@@ -15,7 +18,7 @@ namespace comrade.UnitTests.Tests.UtilTests
             var restult = teste.ToKebabCase();
 
             Assert.NotEmpty(restult);
-            Assert.Equal(restult,objetivo);
+            Assert.Equal(restult, objetivo);
         }
     }
 }

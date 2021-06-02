@@ -14,7 +14,7 @@ namespace comrade.Application.Extensions
     {
         public static string ToCamelCase(this string source)
         {
-            Regex pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
+            var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
             return new string(
                 new CultureInfo("pt-BR", false)
                     .TextInfo
@@ -27,21 +27,21 @@ namespace comrade.Application.Extensions
             );
         }
 
-        public static string ToKebabCase(this string str) 
+        public static string ToKebabCase(this string str)
         {
-            Regex pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
+            var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
             return string.Join("-", pattern.Matches(str)).ToLower();
         }
 
-        public static string ToSnakeCase(this string str) 
+        public static string ToSnakeCase(this string str)
         {
-            Regex pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
+            var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
             return string.Join("_", pattern.Matches(str)).ToLower();
         }
 
-        public static string ToTitleCase(this string str) 
+        public static string ToTitleCase(this string str)
         {
-            Regex pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
+            var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
             return new CultureInfo("pt-BR", false)
                 .TextInfo
                 .ToTitleCase(
@@ -51,7 +51,7 @@ namespace comrade.Application.Extensions
 
         public static string ToPascalCase(this string source)
         {
-            Regex pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
+            var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
             return new string(
                 new CultureInfo("pt-BR", false)
                     .TextInfo
@@ -63,14 +63,14 @@ namespace comrade.Application.Extensions
                     .ToArray()
             );
         }
-        
+
         public static string ToProperCase(this string source)
         {
             if (source == null) return source;
             if (source.Length < 2) return source.ToUpper();
-            
+
             var words = source.ToLower().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-            
+
             var result = "";
             foreach (var word in words)
                 result +=
@@ -84,9 +84,9 @@ namespace comrade.Application.Extensions
         {
             var str = phrase.RemoveAccent().ToLower();
 
-            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");  
-            str = Regex.Replace(str, @"\s+", " ").Trim(); 
-            str = str.Trim(); 
+            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            str = Regex.Replace(str, @"\s+", " ").Trim();
+            str = str.Trim();
             str = Regex.Replace(str, @"\s", "-");
 
             return str;

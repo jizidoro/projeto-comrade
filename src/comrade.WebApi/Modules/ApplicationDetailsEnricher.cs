@@ -1,6 +1,10 @@
-﻿using System.Reflection;
+﻿#region
+
+using System.Reflection;
 using Serilog.Core;
 using Serilog.Events;
+
+#endregion
 
 namespace comrade.WebApi.Modules
 {
@@ -12,7 +16,7 @@ namespace comrade.WebApi.Modules
 
             var name = applicationAssembly?.GetName().Name;
             var version = applicationAssembly?.GetName().Version;
-            
+
             logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty("ApplicationName", name));
             logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty("ApplicationVersion", version));
         }

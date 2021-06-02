@@ -42,7 +42,7 @@ namespace comrade.UnitTests.Helpers
                 .AddCustomDataProtection();
 
             services.AddAutoMapperSetup();
-            
+
             services.AddLogging();
 
             services.AddScoped(typeof(ILookupServiceApp<>), typeof(LookupServiceApp<>));
