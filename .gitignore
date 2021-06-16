@@ -4,10 +4,10 @@ git/
 .vs/
 *.user
 *.cache
-*.props
 *.targets
 *.dll
 *.pdb
 *.cache
 *.props
 log*.txt
+key*.xml
