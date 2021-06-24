@@ -67,11 +67,6 @@ namespace comrade.WebApi
 
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<HashingOptions>();
-
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                );
         }
 
         /// <summary>
