@@ -1,10 +1,14 @@
 #region
 
+using System;
 using System.Linq;
 using System.Net.Mime;
+using System.Text.Json;
 using System.Threading.Tasks;
+using comrade.Core.Helpers.Extensions;
 using comrade.Infrastructure.DataAccess;
 using comrade.WebApi.Modules.Common.FeatureFlags;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -12,8 +16,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.FeatureManagement;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 #endregion
 
@@ -43,7 +45,19 @@ namespace comrade.WebApi.Modules
                 .GetAwaiter()
                 .GetResult();
 
-            if (isEnabled) healthChecks.AddDbContextCheck<ComradeContext>("ComradeContext");
+            if (isEnabled)
+            {
+                services.AddHealthChecks()
+                    .AddDbContextCheck<ComradeContext>("ComradeContext")
+                    .AddApplicationInsightsPublisher();
+
+                services.AddHealthChecksUI()
+                    .AddInMemoryStorage();
+
+                healthChecks.AddSqlServer(configuration.GetValue<string>("PersistenceModule:DefaultConnection"),
+                    name: "sqlserver", tags: new string[] {"db", "data"});
+            }
+
 
             return services;
         }
@@ -57,24 +71,37 @@ namespace comrade.WebApi.Modules
             app.UseHealthChecks("/health",
                 new HealthCheckOptions {ResponseWriter = WriteResponse});
 
+            app.UseHealthChecks("/healthcheck", new HealthCheckOptions
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+
+            app.UseHealthChecksUI(options =>
+            {
+                options.UIPath = "/monitor";
+                options.ApiPath = "/monitor-api";
+            });
+
             return app;
         }
 
         private static Task WriteResponse(HttpContext context, HealthReport result)
         {
+            var teste = JsonSerializer.Serialize(
+                new
+                {
+                    currentTime = HorariosFusoExtensions.ObterHorarioBrasilia(),
+                    statusApplication = result.Status.ToString(),
+                    healthChecks = result.Entries.Select(e => new
+                    {
+                        check = e.Key,
+                        status = Enum.GetName(typeof(HealthStatus), e.Value.Status)
+                    })
+                });
+
             context.Response.ContentType = MediaTypeNames.Application.Json;
-
-            JObject json = new(
-                new JProperty("status", result.Status.ToString()),
-                new JProperty("results", new JObject(result.Entries.Select(pair =>
-                    new JProperty(pair.Key, new JObject(
-                        new JProperty("status", pair.Value.Status.ToString()),
-                        new JProperty("description", pair.Value.Description),
-                        new JProperty("data", new JObject(pair.Value.Data.Select(
-                            p => new JProperty(p.Key, p.Value))))))))));
-
-            return context.Response.WriteAsync(
-                json.ToString(Formatting.Indented));
+            return context.Response.WriteAsync(teste);
         }
     }
 }
