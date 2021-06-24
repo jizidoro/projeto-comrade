@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="EventSourcedNormalizers\**" />
+		<EmbeddedResource Remove="EventSourcedNormalizers\**" />
+		<None Remove="EventSourcedNormalizers\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\comrade.Domain\comrade.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
