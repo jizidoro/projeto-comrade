@@ -24,7 +24,6 @@ namespace comrade.WebApi.Modules.Common
                 options.AddPolicy(AllowsAny,
                     builder =>
                     {
-                        // Not a permanent solution, but just trying to isolate the problem
                         builder
                             .AllowAnyOrigin()
                             .AllowAnyMethod()
