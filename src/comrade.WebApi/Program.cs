@@ -2,6 +2,7 @@
 
 using System;
 using comrade.WebApi.Modules;
+using comrade.WebApi.Modules.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -26,19 +27,12 @@ namespace comrade.WebApi
         {
             BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .Enrich.With(new ApplicationDetailsEnricher())
-                .Enrich.FromLogContext()
-                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                .WriteTo.MongoDB("mongodb://localhost/local", "log")
-                .WriteTo.Providers(Providers)
-                .CreateLogger();
+            var hostBuilder = CreateHostBuilder(args).Build();
 
             try
             {
                 Log.Information("Starting up");
-                CreateHostBuilder(args).Build().Run();
+                hostBuilder.Run();
             }
             catch (Exception ex)
             {
@@ -50,10 +44,16 @@ namespace comrade.WebApi
             }
         }
 
+
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostContext, configApp) => { configApp.AddCommandLine(args); })
+                .ConfigureAppConfiguration((hostContext, configApp) =>
+                {
+                    configApp.AddCommandLine(args);
+                    var settings = configApp.Build();
+                    LoggingExtensions.CreateLogMongoDb(Providers, settings);
+                })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
                 .UseSerilog(providers: Providers);
         }

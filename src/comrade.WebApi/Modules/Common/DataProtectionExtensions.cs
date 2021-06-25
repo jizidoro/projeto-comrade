@@ -18,10 +18,6 @@ namespace comrade.WebApi.Modules.Common
         /// </summary>
         public static IServiceCollection AddCustomDataProtection(this IServiceCollection services)
         {
-            services.AddDataProtection()
-                .SetApplicationName("airplanes-api")
-                .PersistKeysToFileSystem(new DirectoryInfo(@"./"));
-
             return services;
         }
     }
