@@ -7,7 +7,7 @@ using FluentValidation;
 
 #endregion
 
-namespace comrade.Application.Validations.BaUsuValitation
+namespace comrade.Application.Validations.UsuarioSistemaValidations
 {
     public class UsuarioSistemaValidation<TDto> : DtoValidation<TDto>
         where TDto : UsuarioSistemaDto

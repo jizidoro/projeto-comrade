@@ -10,7 +10,7 @@ using comrade.Application.Dtos.UsuarioSistemaDtos;
 using comrade.Application.Filters;
 using comrade.Application.Interfaces;
 using comrade.Application.Utils;
-using comrade.Application.Validations.BaUsuValitation;
+using comrade.Application.Validations.UsuarioSistemaValidations;
 using comrade.Core.UsuarioSistemaCore;
 using comrade.Core.UsuarioSistemaCore.Usecase;
 using comrade.Domain.Bases;

@@ -49,7 +49,7 @@ namespace comrade.Core.SecurityCore.Usecase
                         var user = new User
                         {
                             Chave = chave,
-                            Nomeario = usuSelecionado.Nome,
+                            Nome = usuSelecionado.Nome,
                             Papeis = new List<string> {string.IsNullOrEmpty(perfil) ? "" : perfil}
                         };
 
@@ -76,7 +76,7 @@ namespace comrade.Core.SecurityCore.Usecase
             var clains = new List<Claim>
             {
                 new(ClaimTypes.Name, user.Chave),
-                new("Nome", user.Nomeario)
+                new("Nome", user.Nome)
             };
 
             foreach (var role in user.Papeis)

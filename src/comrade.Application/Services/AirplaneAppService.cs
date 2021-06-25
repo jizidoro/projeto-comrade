@@ -10,7 +10,7 @@ using comrade.Application.Dtos.AirplaneDtos;
 using comrade.Application.Filters;
 using comrade.Application.Interfaces;
 using comrade.Application.Utils;
-using comrade.Application.Validations.AirplaneValitation;
+using comrade.Application.Validations.AirplaneValitations;
 using comrade.Core.AirplaneCore;
 using comrade.Core.AirplaneCore.Usecase;
 using comrade.Domain.Models;
