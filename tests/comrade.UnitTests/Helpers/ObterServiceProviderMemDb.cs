@@ -48,12 +48,6 @@ namespace comrade.UnitTests.Helpers
             services.AddScoped(typeof(ILookupServiceApp<>), typeof(LookupServiceApp<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                );
-
-            // Create the service provider instance
             return services.BuildServiceProvider();
         }
     }
