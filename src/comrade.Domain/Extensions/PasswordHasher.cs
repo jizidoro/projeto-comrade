@@ -3,11 +3,10 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
-using comrade.Core.Helpers.Models;
 
 #endregion
 
-namespace comrade.Core.Helpers.Extensions
+namespace comrade.Domain.Extensions
 {
     public sealed class PasswordHasher : IPasswordHasher
     {

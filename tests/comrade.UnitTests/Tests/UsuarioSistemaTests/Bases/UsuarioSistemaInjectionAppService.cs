@@ -2,10 +2,10 @@
 
 using AutoMapper;
 using comrade.Application.Services;
-using comrade.Core.Helpers.Extensions;
 using comrade.Core.Helpers.Models;
-using comrade.Core.UsuarioSistemaCore.Usecase;
-using comrade.Core.UsuarioSistemaCore.Validation;
+using comrade.Core.UsuarioSistemaCore.Usecases;
+using comrade.Core.UsuarioSistemaCore.Validations;
+using comrade.Domain.Extensions;
 using comrade.Infrastructure.DataAccess;
 using comrade.Infrastructure.Repositories;
 

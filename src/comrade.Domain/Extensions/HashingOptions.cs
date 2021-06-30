@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace comrade.Core.Helpers.Models
+namespace comrade.Domain.Extensions
 {
     public sealed class HashingOptions
     {

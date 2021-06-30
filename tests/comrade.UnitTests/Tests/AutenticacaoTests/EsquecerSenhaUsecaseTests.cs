@@ -1,7 +1,7 @@
 #region
 
 using System.Threading.Tasks;
-using comrade.Core.Helpers.Extensions;
+using comrade.Domain.Extensions;
 using comrade.Domain.Models;
 using comrade.Infrastructure.DataAccess;
 using comrade.Infrastructure.Repositories;
@@ -42,7 +42,7 @@ namespace comrade.UnitTests.Tests.AutenticacaoTests
                 Senha = "100.SdwfwU4tDWbBkLlBNd7Vcg==.cGEYFjBRNpLrCxzYNIbSdnbbY1zFvBHcyIslMTSmwy8=",
                 Situacao = true,
                 Matricula = "123",
-                DataRegistro = HorariosFusoExtensions.ObterHorarioBrasilia()
+                DataRegistro = DateTimeBrasilia.GetDateTimeBrasilia()
             };
 
             await using var context = new ComradeContext(options);

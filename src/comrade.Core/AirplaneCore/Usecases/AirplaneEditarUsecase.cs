@@ -2,7 +2,7 @@
 
 using System;
 using System.Threading.Tasks;
-using comrade.Core.AirplaneCore.Validation;
+using comrade.Core.AirplaneCore.Validations;
 using comrade.Core.Helpers.Bases;
 using comrade.Core.Helpers.Interfaces;
 using comrade.Core.Helpers.Models.Results;
@@ -10,7 +10,7 @@ using comrade.Domain.Models;
 
 #endregion
 
-namespace comrade.Core.AirplaneCore.Usecase
+namespace comrade.Core.AirplaneCore.Usecases
 {
     public class AirplaneEditarUsecase : Service
     {

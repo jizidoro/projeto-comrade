@@ -5,6 +5,7 @@ using comrade.Application.Bases;
 using comrade.Application.Dtos.UsuarioSistemaDtos;
 using comrade.Application.Filters;
 using comrade.Application.Utils;
+using comrade.Domain.Models;
 
 #endregion
 

@@ -4,11 +4,11 @@ using System;
 
 #endregion
 
-namespace comrade.Core.Helpers.Extensions
+namespace comrade.Domain.Extensions
 {
-    public static class HorariosFusoExtensions
+    public static class DateTimeBrasilia
     {
-        public static DateTime ObterHorarioBrasilia()
+        public static DateTime GetDateTimeBrasilia()
         {
             var timeUtc = DateTime.UtcNow;
             var kstZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");

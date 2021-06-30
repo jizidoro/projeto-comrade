@@ -3,16 +3,16 @@
 using System;
 using System.Threading.Tasks;
 using comrade.Core.Helpers.Bases;
-using comrade.Core.Helpers.Extensions;
 using comrade.Core.Helpers.Interfaces;
 using comrade.Core.Helpers.Messages;
 using comrade.Core.Helpers.Models.Results;
-using comrade.Core.UsuarioSistemaCore.Validation;
+using comrade.Core.UsuarioSistemaCore.Validations;
+using comrade.Domain.Extensions;
 using comrade.Domain.Models;
 
 #endregion
 
-namespace comrade.Core.UsuarioSistemaCore.Usecase
+namespace comrade.Core.UsuarioSistemaCore.Usecases
 {
     public class UsuarioSistemaIncluirUsecase : Service
     {
@@ -44,7 +44,7 @@ namespace comrade.Core.UsuarioSistemaCore.Usecase
                 if (!validacao.Sucesso) return validacao;
 
                 entity.Senha = _passwordHasher.Hash(entity.Senha);
-                entity.DataRegistro = HorariosFusoExtensions.ObterHorarioBrasilia();
+                entity.DataRegistro = DateTimeBrasilia.GetDateTimeBrasilia();
 
                 await _repository.Add(entity);
 

@@ -1,10 +1,10 @@
 ﻿#region
 
-using comrade.Core.Helpers.Extensions;
 using comrade.Core.Helpers.Interfaces;
 using comrade.Core.Helpers.Models.Results;
 using comrade.Core.Helpers.Models.Validations;
 using comrade.Core.UsuarioSistemaCore;
+using comrade.Domain.Extensions;
 using comrade.Domain.Models;
 
 #endregion

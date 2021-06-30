@@ -2,12 +2,12 @@
 
 using comrade.Application.Interfaces;
 using comrade.Application.Services;
-using comrade.Core.AirplaneCore.Usecase;
-using comrade.Core.AirplaneCore.Validation;
+using comrade.Core.AirplaneCore.Usecases;
+using comrade.Core.AirplaneCore.Validations;
 using comrade.Core.SecurityCore.Usecase;
 using comrade.Core.SecurityCore.Validation;
-using comrade.Core.UsuarioSistemaCore.Usecase;
-using comrade.Core.UsuarioSistemaCore.Validation;
+using comrade.Core.UsuarioSistemaCore.Usecases;
+using comrade.Core.UsuarioSistemaCore.Validations;
 using Microsoft.Extensions.DependencyInjection;
 
 #endregion

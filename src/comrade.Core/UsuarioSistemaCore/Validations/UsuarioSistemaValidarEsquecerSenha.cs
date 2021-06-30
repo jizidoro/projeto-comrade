@@ -7,7 +7,7 @@ using comrade.Domain.Models;
 
 #endregion
 
-namespace comrade.Core.UsuarioSistemaCore.Validation
+namespace comrade.Core.UsuarioSistemaCore.Validations
 {
     public class UsuarioSistemaValidarEsquecerSenha : EntityValidation<UsuarioSistema>
     {

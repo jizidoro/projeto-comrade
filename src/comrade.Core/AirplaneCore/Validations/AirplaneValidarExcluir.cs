@@ -7,21 +7,21 @@ using comrade.Domain.Models;
 
 #endregion
 
-namespace comrade.Core.UsuarioSistemaCore.Validation
+namespace comrade.Core.AirplaneCore.Validations
 {
-    public class UsuarioSistemaValidarEditar : EntityValidation<UsuarioSistema>
+    public class AirplaneValidarExcluir : EntityValidation<Airplane>
     {
-        private readonly IUsuarioSistemaRepository _repository;
+        private readonly IAirplaneRepository _repository;
 
-        public UsuarioSistemaValidarEditar(IUsuarioSistemaRepository repository)
+        public AirplaneValidarExcluir(IAirplaneRepository repository)
             : base(repository)
         {
             _repository = repository;
         }
 
-        public async Task<ISingleResult<UsuarioSistema>> Execute(UsuarioSistema entity)
+        public async Task<ISingleResult<Airplane>> Execute(int id)
         {
-            var registroExiste = await RegistroExiste(entity.Id);
+            var registroExiste = await RegistroExiste(id);
             if (!registroExiste.Sucesso)
             {
                 return registroExiste;

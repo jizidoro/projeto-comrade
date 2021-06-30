@@ -7,7 +7,7 @@ using comrade.Domain.Models;
 
 #endregion
 
-namespace comrade.Core.AirplaneCore.Validation
+namespace comrade.Core.AirplaneCore.Validations
 {
     public class AirplaneValidarCodigoRepetido : EntityValidation<Airplane>
     {

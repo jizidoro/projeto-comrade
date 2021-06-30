@@ -12,7 +12,7 @@ using comrade.Application.Interfaces;
 using comrade.Application.Utils;
 using comrade.Application.Validations.UsuarioSistemaValidations;
 using comrade.Core.UsuarioSistemaCore;
-using comrade.Core.UsuarioSistemaCore.Usecase;
+using comrade.Core.UsuarioSistemaCore.Usecases;
 using comrade.Domain.Bases;
 using comrade.Domain.Models;
 using Microsoft.EntityFrameworkCore;

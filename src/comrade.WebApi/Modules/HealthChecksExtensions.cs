@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Threading.Tasks;
-using comrade.Core.Helpers.Extensions;
+using comrade.Domain.Extensions;
 using comrade.Infrastructure.DataAccess;
 using comrade.WebApi.Modules.Common.FeatureFlags;
 using HealthChecks.UI.Client;
@@ -91,7 +91,7 @@ namespace comrade.WebApi.Modules
             var teste = JsonSerializer.Serialize(
                 new
                 {
-                    currentTime = HorariosFusoExtensions.ObterHorarioBrasilia(),
+                    currentTime = DateTimeBrasilia.GetDateTimeBrasilia(),
                     statusApplication = result.Status.ToString(),
                     healthChecks = result.Entries.Select(e => new
                     {

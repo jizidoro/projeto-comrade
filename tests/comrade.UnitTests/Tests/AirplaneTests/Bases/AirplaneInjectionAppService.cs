@@ -2,8 +2,8 @@
 
 using AutoMapper;
 using comrade.Application.Services;
-using comrade.Core.AirplaneCore.Usecase;
-using comrade.Core.AirplaneCore.Validation;
+using comrade.Core.AirplaneCore.Usecases;
+using comrade.Core.AirplaneCore.Validations;
 using comrade.Infrastructure.DataAccess;
 using comrade.Infrastructure.Repositories;
 

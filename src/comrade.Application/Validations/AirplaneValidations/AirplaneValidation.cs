@@ -7,7 +7,7 @@ using FluentValidation;
 
 #endregion
 
-namespace comrade.Application.Validations.AirplaneValitations
+namespace comrade.Application.Validations.AirplaneValidations
 {
     public class AirplaneValidation<TDto> : DtoValidation<TDto>
         where TDto : AirplaneDto

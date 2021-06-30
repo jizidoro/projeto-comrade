@@ -2,11 +2,11 @@
 
 using System.Collections.Generic;
 using comrade.Application.Services;
-using comrade.Core.Helpers.Extensions;
 using comrade.Core.Helpers.Models;
 using comrade.Core.SecurityCore.Usecase;
 using comrade.Core.SecurityCore.Validation;
-using comrade.Core.UsuarioSistemaCore.Validation;
+using comrade.Core.UsuarioSistemaCore.Validations;
+using comrade.Domain.Extensions;
 using comrade.Infrastructure.DataAccess;
 using comrade.Infrastructure.Repositories;
 using comrade.Infrastructure.Repositories.Views;

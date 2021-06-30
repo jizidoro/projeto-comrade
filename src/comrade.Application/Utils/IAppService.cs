@@ -1,6 +1,8 @@
 ﻿#region
 
 using AutoMapper;
+using comrade.Core.Helpers.Interfaces;
+using comrade.Domain.Bases;
 
 #endregion
 

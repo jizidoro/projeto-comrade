@@ -2,9 +2,9 @@
 
 using comrade.Application.Interfaces;
 using comrade.Application.Services;
-using comrade.Core.Helpers.Extensions;
 using comrade.Core.Helpers.Interfaces;
 using comrade.Core.Helpers.Models;
+using comrade.Domain.Extensions;
 using comrade.Infrastructure.Bases;
 using comrade.WebApi.Modules;
 using comrade.WebApi.Modules.Common;
